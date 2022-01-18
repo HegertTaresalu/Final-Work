@@ -12,8 +12,7 @@ exports.getAdminPage = (req,res) =>{
 
 };
 
-// exports.getDate = (req,res) =>{
-//     let today = date.getDate();
-//     res.send(today);
+exports.getSigninPage = (req,res) =>{
+    res.render("signin");
 
-// }
+};
