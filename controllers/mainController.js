@@ -1,15 +1,22 @@
 const User = require('../models/user');
 const passport = require('passport');
-const ate = require("../getDate")
+const date = require("../getDate");
+const Data = require("../models/data")
+
 exports.getMainPage = (req,res) =>{
     let today = date.getDate();
-    res.render("index", {dateToRender:today});
+    
+    Data.education.find({}, function(err,education)
+    {
+        console.log(education)
+        res.render("index");
+    })
 };
 
 exports.getAdminPage = (req,res) =>{
     if(req.isAuthenticated)
     {
-        res.render("admin")
+        res.render("admin/admin")
     }
     else{
         res.render("register")
@@ -21,7 +28,7 @@ exports.getSigninPage = (req,res) =>{
 
 };
 exports.getRegisterPage = (req,res) => {
-    res.render("register")
+    res.render("register");
 };
 
 exports.postSignIn = (req,res)=>{
@@ -33,11 +40,11 @@ exports.postSignIn = (req,res)=>{
     req.login(user,(error)=>{
         if(error){
             console.log(error)
-            res.redirect("/login")
+            res.redirect("/signin")
         }
         else{
             passport.authenticate("local")(req,res,()=>{
-                res.render("admin");
+                res.render("admin/admin");
             });
         }
     });
@@ -48,13 +55,13 @@ exports.postSignIn = (req,res)=>{
 
 exports.postRegister = (req, res) => {
     User.register({username: req.body.username}, req.body.password, (error, user)=>{
-        console.log(req.body.password)
         if(error){
             console.log(error);
             res.redirect('/register');
         } else {
+            console.log("render")
             passport.authenticate('local')(req, res, ()=> {
-                res.render('admin');
+                res.render('admin/admin');
             });
         }
     });

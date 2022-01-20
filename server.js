@@ -7,7 +7,7 @@ const mainRoute = require("./routes/mainRoute");
 const ejs = require("ejs");
 const passport = require('passport');
 const app = express();
-
+require('./models/db');
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
