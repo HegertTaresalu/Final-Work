@@ -7,7 +7,10 @@ const mainRoute = require("./routes/mainRoute");
 const ejs = require("ejs");
 const passport = require('passport');
 const app = express();
+const data = require("./models/data");
+const mongoose  = require('mongoose');
 require('./models/db');
+
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -22,12 +25,13 @@ app.use(session({
 
 
 }));
-//initialize passport
 
+//initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(mainRoute); 
+
 
 
 const port = 3000;

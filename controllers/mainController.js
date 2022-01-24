@@ -1,26 +1,41 @@
 const User = require('../models/user');
 const passport = require('passport');
 const date = require("../getDate");
-const Data = require("../models/data")
+const Data = require("../models/data");
 
 exports.getMainPage = (req,res) =>{
-    let today = date.getDate();
-    
-    Data.education.find({}, function(err,education)
-    {
-        console.log(education)
-        res.render("index");
+    /*
+    Data.fetchData(data => {
+
+        let today = date.getDate();
+
+
+        res.render("index",{currentDay: today,})
     })
+    
+  */
+
+    
+    let today = date.getDate();
+
+
+    res.render("index",{currentDay: today})
+
 };
 
+
 exports.getAdminPage = (req,res) =>{
-    if(req.isAuthenticated)
-    {
-        res.render("admin/admin")
-    }
-    else{
-        res.render("register")
-    }
+    Data.fetchData(fileData => {
+        console.log(fileData);
+        if(req.isAuthenticated)
+        {
+            res.render("admin/admin",{currentData: fileData[0]})
+        }
+        else{
+            res.render("register")
+        }
+    })
+   
 };
 
 exports.getSigninPage = (req,res) =>{
@@ -44,10 +59,16 @@ exports.postSignIn = (req,res)=>{
         }
         else{
             passport.authenticate("local")(req,res,()=>{
-                res.render("admin/admin");
-            });
+                Data.fetchData(fileData => {
+                    res.render("admin/admin",{currentData: fileData[0]})
+                })
+
+
+
+
+            })
         }
-    });
+    })
 };
 
 
@@ -66,3 +87,28 @@ exports.postRegister = (req, res) => {
         }
     });
 };
+
+
+
+
+exports.postaddData = (req,res) => {
+    
+    const data = req.body;
+
+    const newData = new Data({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        dateOfBirth:req.body.dateOfBirth,
+        currentResidence:req.body.nameOfSchool,
+        nameOfSchool:req.body.nameOfSchool,
+        technicalSkill:req.body.technicalSkill,
+        softSkill:req.body.softSkill,
+        dateOfGraduation:req.body.dateOfGraduation
+    });
+    console.log(req.body.firstName);
+
+    newData.saveData();
+    res.redirect("/");
+    
+};
+

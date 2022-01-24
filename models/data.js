@@ -1,30 +1,55 @@
-const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path")
 
 
-const personalInfoScheme = new mongoose.Schema({
-firstName:String,
-lastName:String,
-dateOfBirth:{type: Date},
-currentResidence :String
-
-});
+const FilePath = path.join(path.dirname(require.main.filename), "models", "data_.json")
 
 
+module.exports = class myData{
+    constrctor(FirstName, LastName,DateOfBirth,CurrentResidence,NameOfSchool,TechnicalSkill,SoftSkill,DateOfGraduation,){
+        this.firstName = FirstName,
+        this.lastName = LastName,
+        this.dateOfBirth = DateOfBirth,
+        this.currentResidence = CurrentResidence,
+        this.nameOfSchool = NameOfSchool,
+        this.technicalSkill = TechnicalSkill,
+        this.softSkill = SoftSkill,
+        this.dateOfGraduation = DateOfGraduation
+    }
 
-const skillSchema = new mongoose.Schema({
-title:String,
-description:String,
-other:String
-});
+    saveData(){
+        fs.readFile(FilePath, (err, fileContent)=>{
+            let dataList = [];
+            if(!err){
+                dataList.push(this)
+                console.log(this);
+            }
+            else {
+                console.log(err)
+            }
 
-const educationSchema = new mongoose.Schema({
-    nameOfSchool:String,
-    description:String,
-    dateOfGraduation:{type:Date}
-});
+            fs.writeFile(FilePath, JSON.stringify(dataList),(error)=>{
+                if(!error){
+                    console.log("data saved")
+                }
+            })
+        })
+    }
 
-module.exports = {
-personalInfo :mongoose.model('personalInfo', personalInfoScheme),
-education :mongoose.model('education', educationSchema),
-skills :mongoose.model("skills",skillSchema)
-}
+    static fetchData(callback){
+        fs.readFile(FilePath,(err,fileContent)=>{
+            if(err){
+                callback([])
+
+            }
+            callback(JSON.parse(fileContent))
+
+        })
+
+    }
+
+
+
+
+
+};

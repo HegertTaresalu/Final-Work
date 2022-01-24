@@ -1,0 +1,9 @@
+.addForm{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+h1{
+text-align: center;
+padding: 1rem;
+}

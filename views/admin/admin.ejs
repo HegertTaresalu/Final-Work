@@ -25,4 +25,48 @@
     </div>
   </nav>  
 
+  <h1>Add Data</h1>
+<div class="addForm">
+  <form action="/addData" method="POST">
+    <div class="form-floating">
+      <input type="text" name="firstName" class="form-control" id="floatingInput" placeholder="First name" value="<%=currentData.firstName  %>">
+      <label for="floatingInput">First Name</label>
+  </div>
+  <div class="form-floating">
+      <input type="text" name ="lastName" class="form-control" id="floatingInput" placeholder="Last Name" value="<%=currentData.lastName%>">
+      <label for="floatingInput">Last Name</label>
+  </div>
+  <div class ="form-floating">
+      <input type="text" name = "dateOfBirth" class = "form-control" id = "floatingInput" placeholder="dateOfBirth" value="<%=currentData.dateOfBirth%>">
+      <label for="floating input"> Date Of Birth</label>
+  </div>
+  <div class ="form-floating">
+    <input type="text" name ="currentResidence" class ="form-control" id = "floatingInput" placeholder="currentResidence" value="<%=currentData.currentResidence%>">
+    <label for="floating input"> Current Residence</label>
+  </div>
+  <div class ="form-floating">
+    <input type="text" name ="nameOfSchool" class ="form-control" id = "floatingInput" placeholder="nameOfSchool" value="<%=currentData.nameOfSchool%>">
+    <label for="floating input"> Name of School</label>
+  </div>
+  <div class ="form-floating">
+    <input type="text" name ="technicalSkill" class ="form-control" id = "floatingInput" placeholder="technicalSkill" value="<%=currentData.technicalSkill%>">
+    <label for="floating input"> technical Skill</label>
+  </div>
+  <div class ="form-floating">
+    <input type="text" name ="softSkill" class ="form-control" id = "floatingInput" placeholder="softSkill" value="<%=currentData.softSkill%>">
+    <label for="floating input"> Soft Skill</label>
+  </div>
+  <div class ="form-floating">
+    <input type="text" name ="dateOfGraduation" class ="form-control" id = "floatingInput" placeholder="dateOfGraduation" value="<%=currentData.dateOfGraduation%>">
+    <label for="floating input"> Date Of Graduation</label>
+  </div>
+
+  <div class="button">
+      <button type ="submit" class ="btn btn-dark">save data</button>
+  </div>
+  </form>
+</div>
+
+
+
 <%- include('../partials/footer') %>
