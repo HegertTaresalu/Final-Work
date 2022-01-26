@@ -4,35 +4,26 @@ const date = require("../getDate");
 const Data = require("../models/data");
 
 exports.getMainPage = (req,res) =>{
-    /*
-    Data.fetchData(data => {
+    
+    Data.fetchData(fileData => {
 
         let today = date.getDate();
 
-
-        res.render("index",{currentDay: today,})
+        res.render("index",{currentDay: today,currentData: fileData[0]})
     })
     
-  */
-
-    
-    let today = date.getDate();
-
-
-    res.render("index",{currentDay: today})
-
 };
 
 
 exports.getAdminPage = (req,res) =>{
     Data.fetchData(fileData => {
         console.log(fileData);
-        if(req.isAuthenticated)
+        if(req.isAuthenticated())
         {
             res.render("admin/admin",{currentData: fileData[0]})
         }
         else{
-            res.render("register")
+            res.redirect("signin")
         }
     })
    
@@ -41,9 +32,15 @@ exports.getAdminPage = (req,res) =>{
 exports.getSigninPage = (req,res) =>{
     res.render("signin");
 
-};
+};      
 exports.getRegisterPage = (req,res) => {
     res.render("register");
+};
+
+
+exports.SignOut = (req,res) => {
+    req.logout();   
+    res.redirect("/");
 };
 
 exports.postSignIn = (req,res)=>{
@@ -93,22 +90,10 @@ exports.postRegister = (req, res) => {
 
 exports.postaddData = (req,res) => {
     
-    const data = req.body;
-
-    const newData = new Data({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        dateOfBirth:req.body.dateOfBirth,
-        currentResidence:req.body.nameOfSchool,
-        nameOfSchool:req.body.nameOfSchool,
-        technicalSkill:req.body.technicalSkill,
-        softSkill:req.body.softSkill,
-        dateOfGraduation:req.body.dateOfGraduation
-    });
-    console.log(req.body.firstName);
-
-    newData.saveData();
+    const newData = new Data(req.body.firstName,req.body.lastName,req.body.dateOfBirth,req.body.currentResidence,req.body.nameOfSchool,req.body.technicalSkill,req.body.softSkill,req.body.dateOfGraduation);
+    newData.saveData();    
     res.redirect("/");
+
     
 };
 

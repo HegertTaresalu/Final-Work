@@ -16,6 +16,7 @@ router.post("/register", mainController.postRegister);
 
 router.post("/addData", mainController.postaddData);
 
+router.get("/signOut", mainController.SignOut);
 
 module.exports = router
 

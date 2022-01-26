@@ -1,20 +1,19 @@
 const fs = require("fs");
 const path = require("path")
-
-
 const FilePath = path.join(path.dirname(require.main.filename), "models", "data_.json")
 
 
 module.exports = class myData{
-    constrctor(FirstName, LastName,DateOfBirth,CurrentResidence,NameOfSchool,TechnicalSkill,SoftSkill,DateOfGraduation,){
-        this.firstName = FirstName,
-        this.lastName = LastName,
-        this.dateOfBirth = DateOfBirth,
-        this.currentResidence = CurrentResidence,
-        this.nameOfSchool = NameOfSchool,
-        this.technicalSkill = TechnicalSkill,
-        this.softSkill = SoftSkill,
-        this.dateOfGraduation = DateOfGraduation
+
+    constructor(firstName, lastName,dateOfBirth,currentResidence,nameOfSchool,technicalSkill,softSkill,dateOfGraduation){
+        this.firstName = firstName
+        this.lastName = lastName
+        this.dateOfBirth = dateOfBirth
+        this.currentResidence = currentResidence
+        this.nameOfSchool = nameOfSchool
+        this.technicalSkill = technicalSkill
+        this.softSkill = softSkill
+        this.dateOfGraduation = dateOfGraduation    
     }
 
     saveData(){
