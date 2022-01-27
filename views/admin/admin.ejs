@@ -24,7 +24,7 @@
 
   <h1>Add Data</h1>
 <div class="addForm">
-  <form action="/addData" method="POST">
+  <form action="/addData" method="POST" enctype="multipart/form-data">
     <div class="form-floating">
       <input type="text" name="firstName" class="form-control" id="floatingInput" placeholder="First name" value="<%=currentData.firstName  %>">
       <label for="floatingInput">First Name</label>
@@ -57,7 +57,11 @@
     <input type="text" name ="dateOfGraduation" class ="form-control" id = "floatingInput" placeholder="dateOfGraduation" value="<%=currentData.dateOfGraduation%>">
     <label for="floating input"> Date Of Graduation</label>
   </div>
-
+  <div class ="form-floating">
+    <input type="file" name ="userFile" class ="form-control" id = "floatingInput" placeholder="userFile" value="<%=currentData.userFile%>">
+    <label for="floating input">userFile</label>
+  </div>
+ 
   <div class="button">
       <button type ="submit" class ="btn btn-dark">save data</button>
   </div>

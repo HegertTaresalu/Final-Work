@@ -4,3 +4,34 @@
 
 }
 
+.myinfo{
+    text-align: center;
+    list-style-type: none;
+    font-size: 2vh;
+}
+img{
+    width: 25%;
+}
+
+.footer {
+    font-size: 2rem;
+    padding: 2rem;
+    background-color: #212529;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.footer ul {
+    list-style: none;
+    margin-bottom: 3rem;
+}
+
+.footer ul li {
+    display: inline-block;
+    margin: 2rem;
+}
+
+.footer ul a {
+    color: #777;
+    text-decoration: none;
+}

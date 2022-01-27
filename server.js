@@ -11,11 +11,10 @@ const data = require("./models/data");
 const mongoose  = require('mongoose');
 require('./models/db');
 
-
-app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: true}));
-
+app.use(express.static('public'));
+app.use(express.static('images'));
 
 
 app.use(session({
@@ -34,7 +33,7 @@ app.use(mainRoute);
 
 
 
-const port = 300;
+const port = 3001;
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}.`);

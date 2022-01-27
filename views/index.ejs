@@ -5,7 +5,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="/">My Resume</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -34,10 +34,17 @@
       </div>
       </nav>
       <div class="myinfo">
-        <li><%=currentData.firstName%>    </li>
-        <li>currentData.lastName</li>
-        <li>currentData.</li>
-
+        <h1>Personal information</h1>
+        <li><%=currentData.firstName%></li>
+        <li><%=currentData.lastName%></li>
+        <li><%=currentData.dateOfBirth%></li>
+        <li><%=currentData.currentResidence%></li>
+        <li><%=currentData.nameOfSchool%></li>
+        <h1>technical information</h1>
+        <li><%=currentData.technicalSkill%></li>
+        <li><%=currentData.softSkill%></li>
+        <li><%=currentData.dateOfGraduation%></li>
+        <li><img src="<%=currentData.userFile%>"</li>
       </div>
 
 

@@ -89,8 +89,8 @@ exports.postRegister = (req, res) => {
 
 
 exports.postaddData = (req,res) => {
-    
-    const newData = new Data(req.body.firstName,req.body.lastName,req.body.dateOfBirth,req.body.currentResidence,req.body.nameOfSchool,req.body.technicalSkill,req.body.softSkill,req.body.dateOfGraduation);
+    const newData = new Data(req.body.firstName,req.body.lastName,req.body.dateOfBirth,req.body.currentResidence,req.body.nameOfSchool,req.body.technicalSkill,req.body.softSkill,req.body.dateOfGraduation,req.file.filename);
+   
     newData.saveData();    
     res.redirect("/");
 
